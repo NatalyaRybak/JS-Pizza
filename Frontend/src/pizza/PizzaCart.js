@@ -2,7 +2,7 @@
  * Created by chaika on 02.02.16.
  */
 var Templates = require('../Templates');
-
+var Storage = require ("Storage")
 //Перелік розмірів піци
 var PizzaSize = {
     Big: "big_size",
@@ -40,6 +40,13 @@ function removeFromCart(cart_item) {
 function initialiseCart() {
     //Фукнція віпрацьвуватиме при завантаженні сторінки
     //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
+    var saved_cart = Storage.read("cart");
+    if(saved_cart){
+        Cart = saved_cart;
+    }
+
+
+
     //TODO: ...
 
     updateCart();
@@ -53,6 +60,8 @@ function getPizzaInCart() {
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
+
+    Storage.write("cart",Cart);
 
     //Очищаємо старі піци в кошику
     $cart.html("");
