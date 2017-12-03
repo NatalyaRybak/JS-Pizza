@@ -1,20 +1,48 @@
-@mainColor: blue;
+@mainColor: #d67b0b;
 @rightPanelWidth: 300px;
-@topPanelHeight: 80px;
+@topPanelHeight: 90px;
+@widthLabel: 80px;
 @rightTopHeight: 100px;
 @rightBottomHeight: 100px;
 @orderedPizzaHeight:120px;
 @import "pizza/pizza-card";
 
 .main-pizza{
-  margin-top: @topPanelHeight+10px;
-  margin-right: @rightPanelWidth;
+  margin: @topPanelHeight @rightPanelWidth 0 0;
+  padding: 10px;
+  background-color: antiquewhite;
 }
 .inner-container{
   max-width: 1000px;
   margin: auto;
   //padding: @topPanelHeight+20px 10px 10px 10px;
 }
+
+ .filter-name{
+  width: 100%;
+  height: 50px;
+  text-align: center;
+     font: 14px "Arial";
+ }
+.filter-name .amount{
+   background-color: @mainColor;
+ }
+.filters{
+  width: 60%;
+  height: 50px;
+  margin: 1% 20% 1% 25%;
+  text-align: center;
+  height: auto;
+}
+.pizza_filter {
+  font: 14px "Arial";
+  color: @mainColor;
+}
+.filters a{
+  color: @mainColor;
+  border-radius: 4px;
+}
+
 .right-panel{
   height: 100%;
   width: @rightPanelWidth;
@@ -27,12 +55,25 @@
 .top-panel{
   padding-right: @rightPanelWidth;
   width: 100%;
-  height: @topPanelHeight;
+  min-height: @topPanelHeight;
   position: fixed;
   top: 0;
   left: 0;
   background: rgba(0,0,0,0.8);
 }
+.order_count_title{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 17px;
+  padding: 0 30px 0 15px;
+}
+
+.clear-cart{
+  font-size: 10px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
 //окремий файл для лівої і правої колонки;
 .main-part{
   width: 100%;
@@ -50,6 +91,7 @@
   right:0;
   z-index: 4;
   background: white;
+  padding-top: 30px;
 }
 
 .bottom-part{
@@ -107,7 +149,7 @@
   padding: 15px;
   position: fixed;
   height: @topPanelHeight;
-  width: @topPanelHeight+20px;
+  width: @topPanelHeight+10px;
   background-color: #ea862e;
   margin: 0 10px 0 11px;
 }
@@ -135,7 +177,7 @@
   bottom: 0;
   left: 10px;
   padding: 10px;
-  width: @topPanelHeight+20px;
+  width: @topPanelHeight+10px;
   background-color: #ea862e;
 }
 .discount-20{

@@ -2,7 +2,7 @@
  * Created by chaika on 02.02.16.
  */
 var Templates = require('../Templates');
-var Storage = require ("Storage")
+var Storage = require ("./Storage")
 //Перелік розмірів піци
 var PizzaSize = {
     Big: "big_size",
@@ -86,11 +86,17 @@ function updateCart() {
     Cart.forEach(showOnePizzaInCart);
 
 }
+function clearCart() {
+     Cart = [];
+     updateCart();
+}
+
+
 
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
-
+exports.clearCart = clearCart;
 exports.getPizzaInCart = getPizzaInCart;
 exports.initialiseCart = initialiseCart;
-
+exports.updateCart = updateCart;
 exports.PizzaSize = PizzaSize;

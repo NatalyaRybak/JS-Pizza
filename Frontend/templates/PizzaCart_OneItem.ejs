@@ -1,24 +1,22 @@
-<div>
-    <%= pizza.title %> (<%= size %>)
-    <div>Ціна: <%= pizza[size].price %> грн.</div>
-    <div>
-        <button class="btn btn-danger minus">-</button>
-        <span class="label label-default"><%= quantity %></span>
-        <button class="btn btn-success plus">+</button>
+<div class="ordered-pizza">
+    <h3 class="title"><%= pizza.title %>
+        <% if (size == "big_size") {%>
+        (Велика)
+        <%} else {%>
+        (Мала)
+        <% } %>
+    </h3>
+    <div class="order-details">
+        <span class="size-img"><img src="assets/images/size-icon.svg"><span class="d"> 30</span></span>
+        <span class="weight-img"><img src="assets/images/weight.svg"><span class="gr"> 460</span></span>
     </div>
-    <div class=" ordered-pizza">
-        <img class="pizza-img" alt="піца" src="assets/images/pizza_2.jpg">
-        <span class="title">Thumbnail label</span>
-        <div class="order-details">
-            <img class="size-img" src="assets/images/size-icon.svg">
-            <span class="size">size</span>
-            <img class="weight-img" src="assets/images/weight.svg">
-            <span class="weight">weight</span>
-        </div>
-        <div class="order-price"></div>
-        <button type="button" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
-        <span class="quantity">quantity</span>
-        <button type="button" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-minus"></i></button>
-        <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-remove"></i></button>
+    <div class="order-price">
+        <span class="price"><%= pizza[size].price * quantity %> грн</span>
+        <span class="btn btn-success plus">+</span>
+        <span class="quantity"><%= quantity %></span>
+        <span class="btn btn-danger minus">&ndash;</span>
+        <span class="sht">шт.</span>
+        <span class="btn btn-default delete">&times;</span>
+        <img class="pizza-img" src="<%= pizza.icon %>">
     </div>
 </div>

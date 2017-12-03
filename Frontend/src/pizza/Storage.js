@@ -1,10 +1,11 @@
-var basil = require ("basil.js");
-basil  = new basil();
-//запам'ятовуємо що було в кошику,щоб якщо користувач закриє кошик,наступного разу було теж саме;
-exports.write = function (key,value) {
-    basil.set(key,value);
+var basil = require('basil.js');
+basil = new basil();
+
+exports.read = function(key) {
+    return basil.get(key);
 };
 
-exports.read = function (key) {
-    basil.get(key);
-}
+exports.write = function(key, value) {
+    return basil.set(key, value);
+};
+
