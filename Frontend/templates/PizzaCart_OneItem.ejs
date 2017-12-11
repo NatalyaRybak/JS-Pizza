@@ -7,16 +7,23 @@
         <% } %>
     </h3>
     <div class="order-details">
-        <span class="size-img"><img src="assets/images/size-icon.svg"><span class="d"> 30</span></span>
+        <span class="size-img"><img src="assets/images/size-icon.svg"><span class="d">30</span></span>
         <span class="weight-img"><img src="assets/images/weight.svg"><span class="gr"> 460</span></span>
     </div>
     <div class="order-price">
         <span class="price"><%= pizza[size].price * quantity %> грн</span>
-        <span class="btn btn-success plus">+</span>
-        <span class="quantity"><%= quantity %></span>
-        <span class="btn btn-danger minus">&ndash;</span>
+
+        <button type="button" class="btn btn-success btn-circle btn-number plus"  data-type="plus">
+            <span class="glyphicon glyphicon-plus plus"></span>
+        </button>
+        <span class="quantity"><%=quantity %></span>
+        <button type="button" class="btn btn-danger btn-circle btn-number minus"  data-type="minus">
+            <span class="glyphicon glyphicon-minus minus"></span>
+        </button>
         <span class="sht">шт.</span>
-        <span class="btn btn-default delete">&times;</span>
+        <button type="button" class="btn btn-default btn-circle btn-number remove"  data-type="remove">
+            <span class="glyphicon glyphicon-remove remove"></span>
+        </button>
         <img class="pizza-img" src="<%= pizza.icon %>">
     </div>
 </div>
