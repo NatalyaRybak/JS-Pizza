@@ -3,6 +3,8 @@
  */
 var Templates = require('../Templates');
 var Storage = require ("./Storage")
+//var API = require("../API");
+
 //Перелік розмірів піци
 var PizzaSize = {
     Big: "big_size",
@@ -17,22 +19,32 @@ var $cart = $("#cart");
 
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-
-    //Приклад реалізації, можна робити будь-яким іншим способом
+    //перевірка,чи немає вже таких піц в кошику
+    var exist = false;
+    var n_pizza;
+    var orderPrice = 0;
+   for( var i = 0;i<Cart.length;i++){
+       if(Cart[i].pizza===pizza && Cart[i].size === size){
+           exist = true;
+           n_pizza = i;
+           break;
+       }
+    }
+    if(exist){
+        Cart[i].quantity++;
+    }else{
     Cart.push({
         pizza: pizza,
         size: size,
         quantity: 1
     });
-
-
+    }
     //Оновити вміст кошика на сторінці
     updateCart();
 }
 
 function removeFromCart(cart_item) {
     //Видалити піцу з кошика
-    //TODO: треба зробити
     Cart.splice(Cart.indexOf(cart_item), 1);
     //Після видалення оновити відображення
     updateCart();
@@ -46,10 +58,6 @@ function initialiseCart() {
         Cart = saved_cart;
     }
 
-
-
-    //TODO: ...
-
     updateCart();
 }
 
@@ -61,12 +69,12 @@ function getPizzaInCart() {
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-
     Storage.write("cart",Cart);
-
     //Очищаємо старі піци в кошику
     $cart.html("");
     var total_price = 0;
+    var quantity_ordered = Cart.length;
+    $('.order-count').text(quantity_ordered);
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
         var html_code = Templates.PizzaCart_OneItem(cart_item);
@@ -78,7 +86,6 @@ function updateCart() {
         $node.find(".plus").click(function(){
             //Збільшуємо кількість замовлених піц
             cart_item.quantity += 1;
-
             //Оновлюємо відображення
             updateCart();
         });
@@ -103,12 +110,31 @@ function updateCart() {
     $(".sum-price-count").text(total_price);
 }
 function clearCart() {
-     Cart = [];
-     updateCart();
+    Cart = [];
+    updateCart();
 }
-
-
-
+//
+// function createOrder (callback) {
+//     API.createOrder({
+//         // name: $("#nameInput").val(),
+//         // phone: $("#phoneInput").val(),
+//         // address: $("#addressInput").val(),
+//         // order: Cart,
+//         // price: $(".sum-number").text()
+//         name:"Name",
+//         phone:"23456789",
+//         address:"jhgjvjkg"
+//
+//     }, function (err, result) {
+//         if (err) {
+//             return callback(err);
+//         } else {
+//             callback(null, result);
+//         }
+//     });
+//
+// }
+//exports.createOrder = createOrder;
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
 exports.clearCart = clearCart;

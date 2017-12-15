@@ -15,4 +15,20 @@ $(function(){
         PizzaCart.clearCart();
     });
 
+    // $(".create-order").click(function () {
+    //     PizzaCart.createOrder(function (err,data) {
+    //         if(err){
+    //             alert("Can't create order"+err.toString());
+    //         }else{
+    //             alert("Order success"+JSON.stringify(data));
+    //         }
+    //
+    //     })
+    // });
+    $(".btn-order").click(function(){
+
+        //TODO: 
+    });
+    
+
 });

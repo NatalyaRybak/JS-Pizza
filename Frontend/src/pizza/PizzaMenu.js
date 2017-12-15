@@ -38,26 +38,36 @@ function filterPizza(filter) {
 
     Pizza_List.forEach(function(pizza){
         //Якщо піка відповідає фільтру
-        //pizza_shown.push(pizza);
+        pizza_shown.push(pizza);
+    //     if (filter === "vega") {
+    //         if (!pizza.content.meat && !pizza.content.chicken && !pizza.content.ocean) {
+    //             pizza_shown.push(pizza);
+    //         }
+    //     } else if (pizza.content[filter]) {
+    //         pizza_shown.push(pizza);
+    //     } else if (!filter){
+    //         pizza_shown.push(pizza);
+    //     }
+    //     //TODO: зробити фільтри
+    //
+     });
 
-        //TODO: зробити фільтри
-    });
 
     //Показати відфільтровані піци
     showPizzaList(pizza_shown);
 }
 
+
 function initialiseMenu() {
     //Показуємо усі піци
-    API.createOrder(function (err,list) {
-
-        if(err){
-            alert("Can't load pizzas");
-        }else{
-            Pizza_List = list;
+     API.getPizzaList(function (err,list) {
+         if(err){
+             alert("Can't load pizzas"+err.toString());
+         }else{
+             Pizza_List = list;
             showPizzaList(Pizza_List);
-        }
-    })
+         }
+     })
 
 }
 
